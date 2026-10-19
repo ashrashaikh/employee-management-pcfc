@@ -29,6 +29,9 @@ public class Employee {
     @Column(nullable = false)
     private String lastName;
 
+    @Column(name = "profile_photo_path", length = 500)
+    private String profilePhotoPath;
+
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;

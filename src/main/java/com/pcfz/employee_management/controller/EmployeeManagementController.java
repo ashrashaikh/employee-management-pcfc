@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.pcfz.employee_management.service.EmployeeService;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -63,9 +65,18 @@ public class EmployeeManagementController {
      * list-employee view to list all the employees
      */
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute Employee employee) {
-        employeeService.saveEmployee(employee);
-        return "redirect:/employees/list";
+    public String saveEmployee(@ModelAttribute Employee employee,
+                               @RequestParam(value = "photoFile", required = false) MultipartFile profilePhotoFile,
+                               Model model) {
+        try {
+            employeeService.saveEmployee(employee, profilePhotoFile);
+            return "redirect:/employees/list";
+        } catch (RuntimeException e) {
+          model.addAttribute("errorMsg", e.getMessage());
+            model.addAttribute("departments", departments);
+            model.addAttribute("managers", employeeService.getAllManagers());
+            return "add-employee";
+        }
     }
 
     /**

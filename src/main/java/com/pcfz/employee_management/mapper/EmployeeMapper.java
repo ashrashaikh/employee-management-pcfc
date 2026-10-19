@@ -22,6 +22,7 @@ public class EmployeeMapper {
         employeeDTO.setDob(emp.getDob());
         employeeDTO.setDepartments(emp.getDepartments());
         employeeDTO.setSalary(emp.getSalary());
+        employeeDTO.setProfilePhotoPath(emp.getProfilePhotoPath());
 
         if (emp.getManager() != null) {
             ManagerDTO managerDTO = new ManagerDTO();

@@ -12,6 +12,7 @@ public class EmployeeDTO {
     private Long id;
     private String firstName;
     private String lastName;
+    private String profilePhotoPath;
     private LocalDate dob;
     private String departments;
     private Double salary;

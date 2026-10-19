@@ -2,6 +2,26 @@
 
 <h2>Employee Details</h2>
 
+<div class="mb-4">
+    <c:choose>
+        <c:when test="${not empty employee.profilePhotoPath}">
+            <img src="${pageContext.request.contextPath}${employee.profilePhotoPath}"
+                 alt="Profile photo of ${employee.firstName} ${employee.lastName}"
+                 width="150"
+                 height="150"
+                 class="rounded-circle shadow"
+                 style="object-fit: cover; border: 3px solid #dee2e6;" />
+        </c:when>
+        <c:otherwise>
+            <div class="rounded-circle bg-light border d-flex
+                        align-items-center justify-content-center"
+                 style="width: 150px; height: 150px;">
+                <span class="text-muted">No photo</span>
+            </div>
+        </c:otherwise>
+    </c:choose>
+</div>
+
 <table class="table table-bordered w-50">
     <tr>
         <th>ID</th>
